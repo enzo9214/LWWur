@@ -1,77 +1,70 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Wurlitzer</title>
-        <meta HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1" />
-        <script type="text/javascript" src="cordova.js"></script>
-        <link rel="stylesheet" href="JQ/jquery.mobile-1.4.2.min.css" />
-		<script src="JQ/jquery-2.1.1.min.js"></script>
-		<script src="JQ/jquery.mobile-1.4.2.min.js"></script>
-        <link rel="stylesheet" href="CSS/index.css" />
-        <script>
-		$(function() {
-			$("#guardardatos").click(function() {
-				var fNombre = $("#Nombre").val();
-				$("#Nombre").val("");
-				 $.ajax({type: "POST", 
-						url: "http://192.168.11.52/agregar.php",
-                      	data: ({Nombre: fNombre}),
-                      cache: false,
-                      dataType: "text",
-                      success: Enviamos
-                    });
-				
-				});
-				
-				function Enviamos(data){       
-					alert("Reporte enviado");
-					$('table#resultTable tbody').html(data);
-				}
-			});
-		</script>
-		
-		 <script>
-		$(function() {
-			$("#enviarvotacion").click(function() {
-				var fIdVotos = $("#IdVotos").val();
-				$("#IdVotos").val("");
-				 $.ajax({type: "POST", 
-						url: "http://192.168.11.52/votar.php",
-                      	data: ({IdVotos: fIdVotos}),
-                      cache: false,
-                      dataType: "text",
-                      success: Enviamos2
-                    });
-				
-				});
-				
-				function Enviamos2(data){       
-					alert("Votacion Realizada");
-				}
-			});
-		</script>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <script type="text/javascript" src="cordova.js"></script> -->
+        <link rel="stylesheet" href="css/bootstrap.css" />
+        <style>
+            .container-fluid {
+                background-image: -webkit-gradient(
+                    linear,
+                    left top,
+                    left bottom,
+                    color-stop(0, #1E5799),
+                    color-stop(1, #7BB9E8)
+                );
+                background-image: -o-linear-gradient(bottom, #1E5799 0%, #7BB9E8 100%);
+                background-image: -moz-linear-gradient(bottom, #1E5799 0%, #7BB9E8 100%);
+                background-image: -webkit-linear-gradient(bottom, #1E5799 0%, #7BB9E8 100%);
+                background-image: -ms-linear-gradient(bottom, #1E5799 0%, #7BB9E8 100%);
+                background-image: linear-gradient(to bottom, #1E5799 0%, #7BB9E8 100%);
+            }
+        </style>
     </head>
 
     <body>
-			<div data-role="page" id="page1">
-				<div data-role="header">
-				<p class="logo"><img src="img/LOGO-01.png" width="300" height="114"></p>
-				</div>
-				<div data-role="fieldcontain">
-					<a href="#page2">Musica</a>
-				</div>
-				<div data-role="footer" data-position="fixed" style="text-align:center;">
-					<a href="http://fb.com/lintek" class="ui-btn ui-corner-all ui-shadow ui-icon-plus ui-btn-icon-left">Agreganos en FB</a>
-					<a href="http://www.lintek.cl/" class="ui-btn ui-corner-all ui-shadow ui-icon-plus ui-btn-icon-left">Pagina Web</a>
-				</div>
-			</div>
-			
-            <div data-role="page" id="page2">
-        	<div data-role="header">
-            	<p>Buscar Cancion o Artista</p>
-				<p><a href="#page1">Volver</a></p>
+    <div class="container-fluid">
+        <div class="clearfix" style="text-align: center;"><img src="img/LOGO-01.png" style="height: 114px; width: 300px;"></div>
+        <div class="clearfix" style="text-align: center;padding-top: 30px;">
+            <a href="http://fb.com/lintek" class="btn btn-primary">Agreganos en FB</a>
+            <a href="http://www.lintek.cl/" class="btn btn-default">Pagina Web</a>
+        </div>
+        <div class="clearfix" style="text-align: center;padding-top: 30px;">
+            <div class="btn-group" data-toggle="buttons" id="select">
+                <label class="btn btn-default">
+                    <input type="radio" name="tipo" value="cancion"> Cancion
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="tipo" value="artista"> Artista
+                </label>
             </div>
+        </div>
+        <div class="form-group" style="padding-top: 10px;">
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+                <input class="form-control" type="email" placeholder="Buscar">
+            </div>
+        </div>
+        <div class="clearfix">
+            <table class="table table-responsive table-bordered" style="background-color: #f5f5f5;">
+                <thead>
+                    <tr>
+                        <th><strong>Nombre</strong></th>
+                        <th><strong>Artista</strong></th>
+                        <th><strong>Votos</strong></th>
+                    </tr>
+                </thead>
+                <tbody id="data"></tbody>
+            </table>
+        </div>
+
+        <footer style="padding-bottom: 1px;background-color: #f5f5f5;">hola</footer>
+
+    </div>
+
+
             <!--------INICIA FORMULARIO------>
             <div data-role="fieldcontain">
                       <label for="Nombre">Nombre:</label>
@@ -95,7 +88,35 @@
                 <input name="IdVotos" type="text" class="flow" id="IdVotos"/>
 				<button type="button" data-theme="a" id="enviarvotacion">Votar</button>
             </div>
-            
         </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+            <script>
+                $("#guardardatos").click(function() {
+                    var fNombre = $("#Nombre").val();
+                    $("#Nombre").val("");
+                    $.ajax({type: "POST",
+                        url: "http://192.168.11.52/agregar.php",
+                        data: ({'Nombre': fNombre}),
+                        success: function(data)  {
+                            alert("Reporte enviado");
+                            $('table#resultTable tbody').html(data);
+                        }
+                    });
+
+                });
+                $("#enviarvotacion").click(function() {
+                    var fIdVotos = $("#IdVotos").val();
+                    $("#IdVotos").val("");
+                    $.ajax({type: "POST",
+                        url: "http://192.168.11.52/votar.php",
+                        data: ({IdVotos: fIdVotos}),
+                        success: function(data){
+                            alert("Votacion Realizada");
+                        }
+
+                    })
+                });
+            </script>
     </body>
 </html>
