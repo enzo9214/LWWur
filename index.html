@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Wurlitzer</title>
+        <meta HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1" />
+        <script type="text/javascript" src="cordova.js"></script>
+        <link rel="stylesheet" href="JQ/jquery.mobile-1.4.2.min.css" />
+		<script src="JQ/jquery-2.1.1.min.js"></script>
+		<script src="JQ/jquery.mobile-1.4.2.min.js"></script>
+        <link rel="stylesheet" href="CSS/index.css" />
+        <script>
+		$(function() {
+			$("#guardardatos").click(function() {
+				var fNombre = $("#Nombre").val();
+				$("#Nombre").val("");
+				 $.ajax({type: "POST", 
+						url: "http://192.168.11.52/agregar.php",
+                      	data: ({Nombre: fNombre}),
+                      cache: false,
+                      dataType: "text",
+                      success: Enviamos
+                    });
+				
+				});
+				
+				function Enviamos(data){       
+					alert("Reporte enviado");
+					$('table#resultTable tbody').html(data);
+				}
+			});
+		</script>
+		
+		 <script>
+		$(function() {
+			$("#enviarvotacion").click(function() {
+				var fIdVotos = $("#IdVotos").val();
+				$("#IdVotos").val("");
+				 $.ajax({type: "POST", 
+						url: "http://192.168.11.52/votar.php",
+                      	data: ({IdVotos: fIdVotos}),
+                      cache: false,
+                      dataType: "text",
+                      success: Enviamos2
+                    });
+				
+				});
+				
+				function Enviamos2(data){       
+					alert("Votacion Realizada");
+				}
+			});
+		</script>
+
+    </head>
+
+    <body>
+			<div data-role="page" id="page1">
+				<div data-role="header">
+				<p class="logo"><img src="img/LOGO-01.png" width="300" height="114"></p>
+				</div>
+				<div data-role="fieldcontain">
+					<a href="#page2">Musica</a>
+				</div>
+				<div data-role="footer" data-position="fixed" style="text-align:center;">
+					<a href="http://fb.com/lintek" class="ui-btn ui-corner-all ui-shadow ui-icon-plus ui-btn-icon-left">Agreganos en FB</a>
+					<a href="http://www.lintek.cl/" class="ui-btn ui-corner-all ui-shadow ui-icon-plus ui-btn-icon-left">Pagina Web</a>
+				</div>
+			</div>
+			
+            <div data-role="page" id="page2">
+        	<div data-role="header">
+            	<p>Buscar Cancion o Artista</p>
+				<p><a href="#page1">Volver</a></p>
+            </div>
+            <!--------INICIA FORMULARIO------>
+            <div data-role="fieldcontain">
+                      <label for="Nombre">Nombre:</label>
+                      <input type="text" name="Nombre" id="Nombre" value=""/>
+               </div>
+               <button type="button" data-theme="a" id="guardardatos">Enviar</button>
+			   
+			    <table id="resultTable">
+				<thead>
+					<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Votos</th>
+					</tr>
+				</thead><tbody></tbody></table>
+			   
+            <!--------FIN FORMULARIO------>
+
+            <div data-role="footer" data-position="fixed">
+            	<label for="IdVotos">Ingresa el Id:</label>
+                <input name="IdVotos" type="text" class="flow" id="IdVotos"/>
+				<button type="button" data-theme="a" id="enviarvotacion">Votar</button>
+            </div>
+            
+        </div>
+    </body>
+</html>
