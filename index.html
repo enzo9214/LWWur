@@ -43,9 +43,14 @@
         </div>
         <div class="form-group" style="padding-top: 10px;">
             <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-                <input class="form-control" type="email" placeholder="Buscar">
+                <input class="form-control" type="text" placeholder="Buscar">
+                <div class="input-group-addon" id=""><span class="glyphicon glyphicon-search"></span></div>
             </div>
+        </div>
+        <div class="list-group">
+            <ul id="busqueda">
+               <li class="list-group-item"></li>
+            </ul>
         </div>
         <div class="clearfix">
             <table class="table table-responsive table-bordered" style="background-color: #f5f5f5;">
@@ -56,6 +61,7 @@
                         <th><strong>Votos</strong></th>
                     </tr>
                 </thead>
+
                 <tbody id="data"></tbody>
             </table>
         </div>
@@ -63,35 +69,10 @@
         <footer style="padding-bottom: 1px;background-color: #f5f5f5;">hola</footer>
 
     </div>
-
-
-            <!--------INICIA FORMULARIO------>
-            <div data-role="fieldcontain">
-                      <label for="Nombre">Nombre:</label>
-                      <input type="text" name="Nombre" id="Nombre" value=""/>
-               </div>
-               <button type="button" data-theme="a" id="guardardatos">Enviar</button>
-			   
-			    <table id="resultTable">
-				<thead>
-					<tr>
-					<th>Id</th>
-					<th>Nombre</th>
-					<th>Votos</th>
-					</tr>
-				</thead><tbody></tbody></table>
-			   
-            <!--------FIN FORMULARIO------>
-
-            <div data-role="footer" data-position="fixed">
-            	<label for="IdVotos">Ingresa el Id:</label>
-                <input name="IdVotos" type="text" class="flow" id="IdVotos"/>
-				<button type="button" data-theme="a" id="enviarvotacion">Votar</button>
-            </div>
-        </div>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
             <script>
+
                 $("#guardardatos").click(function() {
                     var fNombre = $("#Nombre").val();
                     $("#Nombre").val("");
