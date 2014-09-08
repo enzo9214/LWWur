@@ -15,13 +15,11 @@
                     color-stop(0, #1E5799),
                     color-stop(1, #7BB9E8)
                 );
-                background-image: -o-linear-gradient(bottom, #1E5799 0%, #7BB9E8 100%);
-                background-image: -moz-linear-gradient(bottom, #1E5799 0%, #7BB9E8 100%);
-                background-image: -webkit-linear-gradient(bottom, #1E5799 0%, #7BB9E8 100%);
-                background-image: -ms-linear-gradient(bottom, #1E5799 0%, #7BB9E8 100%);
                 background-image: linear-gradient(to bottom, #1E5799 0%, #7BB9E8 100%);
             }
         </style>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
     </head>
 
     <body>
@@ -43,8 +41,8 @@
         </div>
         <div class="form-group" style="padding-top: 10px;">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Buscar">
-                <div class="input-group-addon" id=""><span class="glyphicon glyphicon-search"></span></div>
+                <input class="form-control" type="text" placeholder="Buscar" id="buscar">
+                <div class="input-group-addon"><a href="#" id=""><span class="glyphicon glyphicon-search"></span> Buscar</a></div>
             </div>
         </div>
         <div class="list-group">
@@ -61,16 +59,19 @@
                         <th><strong>Votos</strong></th>
                     </tr>
                 </thead>
+                <tbody id="data">
 
-                <tbody id="data"></tbody>
+                </tbody>
+                <script>
+
+                </script>
             </table>
         </div>
 
-        <footer style="padding-bottom: 1px;background-color: #f5f5f5;">hola</footer>
+        <footer style="padding-bottom: 1px;background-color: #f5f5f5;position: fixed;">hola</footer>
 
     </div>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
+
             <script>
 
                 $("#guardardatos").click(function() {
